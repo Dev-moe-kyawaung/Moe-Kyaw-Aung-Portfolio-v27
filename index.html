@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta Tags for SEO and Responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moe Kyaw Aung Portfolio V27 | Android Senior Developer</title>
+    <meta name="description" content="Android Senior Developer with 12+ years experience in Kotlin, Jetpack Compose, Firebase, and modern Android development. Secure, scalable mobile apps.">
+    <meta name="keywords" content="Android Developer, Kotlin, Jetpack Compose, Firebase, Mobile Development, Myanmar Developer">
+    <meta name="author" content="Moe Kyaw Aung">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Moe Kyaw Aung Portfolio V27 - Android Senior Developer">
+    <meta property="og:description" content="12+ years building secure, scalable Android apps with Kotlin & Jetpack">
+    <meta property="og:image" content="https://res.cloudinary.com/dye5qpwii/image/upload/v1778527878/IMG_20260430_053105_uef0yr.png">
+    <meta property="og:url" content="https://moekyawaung.github.io/">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* CSS Custom Properties - Design System */
+        :root {
+            --color-slate: #64748B;
+            --color-neutral: #171717;
+            --color-white: #FFFFFF;
+            --color-primary: #0EA5E9;
+            --color-secondary: #64748B;
+            --color-accent: #F59E0B;
+            
+            --gradient-primary: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%);
+            --gradient-secondary: linear-gradient(135deg, #64748B 0%, #475569 100%);
+            
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+            --spacing-3xl: 6rem;
+            
+            --border-radius: 0.75rem;
+            --border-radius-lg: 1.5rem;
+            --box-shadow: 0 20px 25px -5px rgba(0, 0,0, 0.1), 0 10px 10px -5px rgba(0, 0,0, 0.04);
+            --box-shadow-lg: 0 25px 50px -12px rgba(0, 0,0, 0.25);
+        }
+
+        /* Dark Mode Variables */
+        [data-theme="dark"] {
+            --color-slate: #94A3B8;
+            --color-neutral: #F1F5F9;
+            --color-white: #0F172A;
+            --color-primary: #0EA5E9;
+        }
+
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--color-neutral);
+            background: var(--color-white);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Cursor */
+        body.custom-cursor {
+            cursor: none;
+        }
+
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--color-primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease;
+            mix-blend-mode: difference;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--color-white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            transition: opacity 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(100, 116, 139, 0.1);
+        }
+
+        [data-theme="dark"] .navbar {
+            background: rgba(15, 23, 42, 0.95);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Bento Grid Layout */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            padding: var(--spacing-3xl) 0;
+        }
+
+        .bento-card {
+            background: var(--color-white);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: var(--box-shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(100, 116, 139, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="dark"] .bento-card {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(100, 116, 139, 0.3);
+        }
+
+        .bento-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-lg);
+        }
+
+        .bento-card.tall { grid-row: span 2; }
+        .bento-card.wide { grid-column: span 2; }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
+            z-index: 2;
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--color-slate);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--color-primary);
+            transform: scale(1.1);
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-lg);
+            }
+            
+            .bento-card.wide { grid-column: span 1; }
+            
+            .parallax {
+                background-attachment: scroll;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(100, 116, 139, 0.1);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-slate);
+            border-radius: 4px;
+        }
+
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--border-radius-lg);
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: var(--box-shadow-lg);
+            z-index: 1001;
+            transition: all 0.3s ease;
+            display: none;
+        }
+
+        .sticky-cta:hover {
+            transform: translateX(-50%) translateY(-2px);
+        }
+
+        /* Lightbox Gallery */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: var(--border-radius);
+        }
+    </style>
+</head>
+<body>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg px-5 py-3">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold fs-3" href="#home" style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                <i class="fas fa-mobile-alt me-2"></i>MKA V27
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link mx-3" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link mx-3" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link mx-3" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link mx-3" href="#github">GitHub</a></li>
+                    <li class="nav-item"><a class="nav-link mx-3" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-3">
+                        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <h1 class="display-3 fw-bold mb-4" style="color: white; line-height: 1.2;">
+                        Android Senior Developer
+                        <span class="d-block text-warning mb-4">12+ Years Experience</span>
+                    </h1>
+                    <p class="lead mb-5" style="color: rgba(255,255,255,0.9); font-size: 1.25rem;">
+                        Building secure, scalable, and user-friendly mobile applications with Kotlin, Jetpack Compose, and modern Android architecture.
+                    </p>
+                    <div class="d-flex flex-column flex-md-row gap-3">
+                        <a href="#contact" class="btn btn-light btn-lg px-5 py-3 fw-semibold">
+                            <i class="fas fa-rocket me-2"></i>Get In Touch
+                        </a>
+                        <a href="#projects" class="btn btn-outline-light btn-lg px-5 py-3 fw-semibold">
+                            <i class="fas fa-eye me-2"></i>View Work
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://res.cloudinary.com/dye5qpwii/image/upload/v1778527878/IMG_20260430_053105_uef0yr.png" 
+                         alt="Moe Kyaw Aung - Android Senior Developer" 
+                         class="img-fluid rounded shadow-lg" 
+                         style="max-height: 500px; border-radius: var(--border-radius-lg);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content - Bento Grid -->
+    <main class="container-fluid px-5">
+        <!-- About Section -->
+        <section id="about" class="py-5">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold mb-4" style="color: var(--color-neutral);">
+                    <span class="badge bg-primary px-4 py-2 fs-5 me-3">About Me</span>
+                    Android Development Expert
+                </h2>
+                <p class="lead text-muted mx-auto" style="max-width: 600px;">
+                    12 years crafting secure, scalable mobile apps with clean architecture and modern Jetpack technologies.
+                </p>
+            </div>
+            
+            <div class="bento-grid">
+                <div class="bento-card tall fade-in">
+                    <div class="row g-4 h-100">
+                        <div class="col-md-4 text-center">
+                            <div class="bg-primary bg-opacity-10 p-4 rounded-circle mx-auto mb-4" style="width: 120px; height: 120px;">
+                                <i class="fas fa-code display-4 text-primary"></i>
+                            </div>
+                            <h4 class="fw-bold mb-3">12+</h4>
+                            <p class="text-muted">Years Experience</p>
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="fw-bold mb-4">Moe Kyaw Aung</h3>
+                            <p class="lead mb-4">
+                                Passionate Android developer specializing in Kotlin and modern Jetpack development. 
+                                I deliver end-to-end features from UI design to production-ready builds with a focus on 
+                                clean architecture, security, and performance.
+                            </p>
+                            <div class="row text-center">
+                                <div class="col-6 mb-3">
+                                    <h5 class="fw-bold" style="color: var(--color-primary);">+95 9 889 000 889</h5>
+                                    <small class="text-muted">Phone</small>
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <h5 class="fw-bold" style="color: var(--color-primary);">Yangon, Myanmar</h5>
+                                    <small class="text-muted">Location</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card wide fade-in">
+                    <h4 class="fw-bold mb-4"><i class="fas fa-briefcase me-2 text-primary"></i>Core Expertise</h4>
+                    <div class="row g-3">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="d-flex align-items-center p-3 bg-light rounded mb-3">
+                                <div class="bg-primary bg-opacity-20 p-3 rounded-circle me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-mobile-android text-primary"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Kotlin & Jetpack</h6>
+                                    <small class="text-muted">Compose, ViewModel, Room</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="d-flex align-items-center p-3 bg-light rounded mb-3">
+                                <div class="bg-success bg-opacity-20 p-3 rounded-circle me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-database text-success"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Firebase</h6>
+                                    <small class="text-muted">Auth, Firestore, Analytics</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-4">
+                            <div class="d-flex align-items-center p-3 bg-light rounded mb-3">
+                                <div class="bg-warning bg-opacity-20 p-3 rounded-circle me-3" style="width: 50px; height: 50px;">
+                                    <i class="fas fa-shield-alt text-warning"></i>
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Security</h6>
+                                    <small class="text-muted">Clean Architecture</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bento-card fade-in">
+                    <h5 class="fw-bold mb-4"><i class="fas fa-chart-line me-2 text-primary"></i>Animated Stats</h5>
+                    <div class="row text-center">
+                        <div class="col-6 col-md-3 mb-4">
+                            <div class="counter h2 fw-bold text-primary mb-2" data-target="50">0</div>
+                            <div class="text-muted">Projects</div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-4">
+                            <div class="counter h2 fw-bold text-success mb-2" data-target="12">0</div>
+                            <div class="text-muted">Years Exp</div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-4">
+                            <div class="counter h2 fw-bold text-warning mb-2" data-target="100">0</div>
+                            <div class="text-muted">Happy Clients</div>
+                        </div>
+                        <div class="col-6 col-md-3 mb-4">
+                            <div class="counter h2 fw-bold text-info mb-2" data
